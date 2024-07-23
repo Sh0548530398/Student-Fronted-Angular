@@ -1,0 +1,14 @@
+
+
+
+<div *ngIf="testList">
+
+   רשימת המבחנים לתלמיד זה הם:
+    <br />
+    <ul>
+        <li *ngFor="let test of testList">
+            {{test.id}}, {{test.descreption}}, {{test.mark}}
+        </li>
+    </ul>
+    
+</div>

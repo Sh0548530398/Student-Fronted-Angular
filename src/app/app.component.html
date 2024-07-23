@@ -1,0 +1,22 @@
+
+<h1>{{title}}</h1>
+<h2>{{time}}</h2>
+<button ltr [language]="'Hebbrew'">לעברית</button>
+<button ltr [language]="'English'">for English</button>
+
+<ul>
+    <li>
+        <a routerLink="/home">דף הבית</a>
+    </li>
+    <li>
+        <a routerLink="/students">לרשימת התלמידים</a>
+    </li>
+    <li>
+        <a routerLink="/addStudent">להוספת תלמיד</a>
+    </li>
+    <li>
+        <a routerLink="/setting">לאיזור האישי</a>
+    </li>
+</ul>
+
+<router-outlet></router-outlet>

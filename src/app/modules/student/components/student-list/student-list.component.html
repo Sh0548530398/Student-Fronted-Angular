@@ -1,0 +1,18 @@
+<input type="checkbox" #cb (change)="getFromServerByActive(cb.checked)"/>הצגת רק תלמידים פעילים<br>
+<input type="text" placeholder="חיפוש סטודנט" (change)="search(searchInput.value)" #searchInput   />
+    
+<ul>
+    <li *ngFor="let student of students" [ngClass]="{'active':!student.active,'highmark': student.marksAvg <= 90 }">
+      מספר זהות: {{student.id}}, שם: {{student.firstname}}, משפחה: {{student.lastname}}, כתובת: {{student.address}},
+       טלפון: {{student.telephone}},
+        <button (click)="deletFromServer(student.idS)" >למחיקת התלמיד</button>
+        <button (click)="showTest(student.testList,student.idS)" routerLink="/students/{{student.idS}}" >עריכת התלמיד</button>
+        <button *ngIf="student.testList && student.id" (click)="showTest(student.testList,student.idS)">הצג בחינות</button>
+        <button *ngIf="student.testList && student.id" (click)="delettest(student.testList)">הסתר בחינות</button>
+       <p *ngIf="student.active && student.absentDays[0].sumdays>0"> היית חסרה {{student.absentDays[0].sumdays}} ימים </p>
+        
+    </li>
+</ul>
+<button (click)="addStudent()">להוספת תלמיד</button>
+<test-list [testList]="selectedTest" ></test-list>
+

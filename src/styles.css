@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+.Hebbrew{
+    background-color: green;
+}
+
+.active{
+    background-color: yellow;
+    
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.highmark{
+    color: brown;
+}
+.rtl{
+    direction: rtl;
+    text-align: right;
+}
+.ltr{
+    direction: ltr;
+    text-align: left;
+    background-color: rgb(170, 113, 170)
+
+}
+body{
+    direction: rtl;
+    text-align: right;
+}

@@ -1,0 +1,59 @@
+
+<h1>הכנס פרטי תלמיד חדש</h1>
+        <form [formGroup]="studentForm">
+            <br>
+            <label for="id"> מספר זהות:</label>
+            <input type="text" id="id" formControlName="id">
+            <ng-container *ngIf="studentForm.controls['id'].errors">
+                <div *ngIf="studentForm.controls['id'].errors['required']">שדה חובה</div>
+                <div *ngIf="studentForm.controls['id'].errors['minlength']">שדה זה אמור להכיל מינימום 4 תווים</div>
+            </ng-container>
+
+            <br>
+            <label for="firstname">שם:</label>
+            <input type="text" formControlName="firstname">
+            <br>
+            <label for="lastname">משפחה:</label>
+            <input formControlName="lastname">
+            <br>
+            <label for="telephone">טלפון:</label>
+            <input formControlName="telephone">
+            <br>
+            <label for="address">כתובת:</label>
+            <input formControlName="address">
+            <br>
+            <label for="active">פעיל:</label>
+            <input formControlName="active">
+            <br>
+            <div>
+                <label for="subjects">מקצועות </label>
+                <select formControlName="subjects">
+                    <option *ngFor="let sub of subjects" value="{{sub}}">{{sub}}</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="year">שנת לימוד:</label>
+                <br>
+                <input type="radio" value="yarsType.first" name="years" formControlName="years" />ראשונה
+                <br>
+                <input type="radio" value="yarsType.second" name="years" formControlName="years" />שניה
+                <br>
+                <input type="radio" value="yarsType.third" name="years" formControlName="years" />שלישית
+            </div>
+            <div [ngSwitch]="studentForm.controls['years'].value">
+                <div *ngSwitchCase="'yarsType.first'" style="color: red;">
+                    8 חודשי לימוד
+                </div>
+                <div *ngSwitchCase="'yarsType.second'">
+                    9 חודשי לימוד
+                </div>
+                <div *ngSwitchCase="'yarsType.third'">
+                    5 חודשי לימוד
+                </div>
+
+            </div>
+            <button [disabled]="!studentForm.valid" (click)="addStudent()" >שמירת הנתונים</button>
+
+        </form>
+ 

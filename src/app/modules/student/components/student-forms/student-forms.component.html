@@ -1,0 +1,73 @@
+<div *ngIf="student">
+
+    <div *ngIf="student.active "> פרטי התלמיד:
+
+        <form [formGroup]="studentForm">
+            <br>
+            <label for="id"> מספר זהות:</label>
+            <input type="text" id="id" formControlName="id">
+            <br>
+            <label for="firstname">שם:</label>
+            <input type="text" formControlName="firstname">
+            <br>
+            <label for="lastname">משפחה:</label>
+            <input formControlName="lastname">
+            <br>
+            <label for="telephone">טלפון:</label>
+            <input formControlName="telephone">
+            <br>
+            <label for="address">כתובת:</label>
+            <input formControlName="address">
+            <br>
+            <label for="active">פעיל:</label>
+            <input formControlName="active">
+            <br>
+            <div>
+                <label for="subjects">מקצועות </label>
+                <select formControlName="subjects">
+                    <option *ngFor="let sub of subjects" value="{{sub}}">{{sub}}</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="year">שנת לימוד:</label>
+                <br>
+                <input type="radio" value="yarsType.first" name="years" formControlName="years" />ראשונה
+                <br>
+                <input type="radio" value="yarsType.second" name="years" formControlName="years" />שניה
+                <br>
+                <input type="radio" value="yarsType.third" name="years" formControlName="years" />שלישית
+            </div>
+            <div [ngSwitch]="studentForm.controls['years'].value">
+                <div *ngSwitchCase="'yarsType.first'" style="color: red;">
+                    8 חודשי לימוד
+                </div>
+                <div *ngSwitchCase="'yarsType.second'">
+                    9 חודשי לימוד
+                </div>
+                <div *ngSwitchCase="'yarsType.third'">
+                    5 חודשי לימוד
+                </div>
+                <div *ngIf="studentForm.controls['idS']?.value !=0">
+                    <p >AbsantDays:</p>
+                    <p *ngIf=" student.absentDays[0].sumdays>0">היית חסרה {{student.absentDays[0].sumdays}}  ימים </p>
+                    <label for="begginingDate"> תאריך התחלה:</label>
+                    <input [value]="" (change)="begginingDate(begginingDate_s.value)" #begginingDate_s>
+                    <br/>
+                    <label for="numbersOfDays"> מספר ימים:</label>
+                    <input [value]=""(change)="numbersOfDays(numbersOfDays_s.value)" #numbersOfDays_s>
+
+
+                </div>
+            </div>
+            <test-list [testList]="student.testList" ></test-list>
+            <button  (click)="saveDeatails()" >שמירת הנתונים</button>
+            <button  (click)="saveAbsantday()">שמירת ימי העדרות</button>
+
+        </form>
+    </div>
+    <div *ngIf="!student.active ">
+    <div> {{student.leftDate}}:התלמיד עזב ב </div>
+ </div>
+</div>
+
